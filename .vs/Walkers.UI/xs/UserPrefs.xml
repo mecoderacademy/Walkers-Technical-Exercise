@@ -1,0 +1,13 @@
+﻿<Properties StartupConfiguration="{93676E4C-486E-4234-A891-D3E83FD9BE01}|https">
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="Multiple Projects" Name="Multiple Projects">
+      <Items>
+        <StartupItem ItemId="{48AB3F12-E0C2-4DA4-8838-AE8D07317B00}" ItemName="Walkers.UI.Client" ConfigurationId="https" />
+        <StartupItem ItemId="{93676E4C-486E-4234-A891-D3E83FD9BE01}" ItemName="Walkers.UI.Server" ConfigurationId="https" />
+      </Items>
+    </MultiItemSolutionRunConfiguration>
+  </MultiItemStartupConfigurations>
+  <MonoDevelop.Ide.ItemProperties.Walkers.UI.Client PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.ItemProperties.Walkers.Tests FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.Walkers.UI.Server PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>

@@ -1,0 +1,41 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = Walkers.UI.Client
+build_property.RootNamespace = Walkers.UI.Client
+build_property.ProjectDir = /Users/mark.evans/Projects/Walkers.UI/Walkers-Technical-Exercise/Walkers.UI/Client/
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/mark.evans/Projects/Walkers.UI/Walkers-Technical-Exercise/Walkers.UI/Client
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/mark.evans/Projects/Walkers.UI/Walkers-Technical-Exercise/Walkers.UI/Client/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mark.evans/Projects/Walkers.UI/Walkers-Technical-Exercise/Walkers.UI/Client/Components/FizzBuzz.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9GaXp6QnV6ei5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mark.evans/Projects/Walkers.UI/Walkers-Technical-Exercise/Walkers.UI/Client/Components/ListView.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MaXN0Vmlldy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mark.evans/Projects/Walkers.UI/Walkers-Technical-Exercise/Walkers.UI/Client/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mark.evans/Projects/Walkers.UI/Walkers-Technical-Exercise/Walkers.UI/Client/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mark.evans/Projects/Walkers.UI/Walkers-Technical-Exercise/Walkers.UI/Client/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-rbo868wc1d

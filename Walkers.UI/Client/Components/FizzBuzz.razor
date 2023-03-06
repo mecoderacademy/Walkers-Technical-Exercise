@@ -1,0 +1,135 @@
+﻿
+@inject HttpClient _httpClient
+@using System.Collections.ObjectModel;
+@using Walkers.UI.Shared;
+@namespace Walkers.UI.Client.Components
+
+<div class="row">
+    <div class="col-md-3">
+        <p role="status">Current value: @inputNumberValue</p>
+
+        <input type="number" min="1" @bind-value="inputNumberValue" class="form-control my-3" />
+        <button class="btn btn-primary my-3" type="submit" onclick="@onSubmitNumber">Submit</button>
+    </div>
+    <div class="row">
+        @if (!string.IsNullOrEmpty(exception))
+        {
+            <label>
+                @exception
+            </label>
+        }
+    </div>
+
+    @if (AssesmentItems != null && AssesmentItems.Any())
+    {
+        <div class="col-md-3 my-3">
+            <ListView Items="@AssesmentItems">
+                <ItemTemplate Context="item">
+
+                    @if ("walkers".AddDayTag() == item.ToLower())
+                    {
+                        <li class="bg-success list-group-item">@item.ToString()</li>
+                    }
+                    else if ("assesment".AddDayTag() == item.ToLower())
+                    {
+                        <li class="bg-danger list-group-item">@item.ToString()</li>
+                    }
+                    else if ("walkers".AddDayTag() + " " +"assesment".AddDayTag() == item.ToLower())
+                    {
+                        var parts = item.ToString().Split(" ");
+                        <li class="list-group-item">
+                            <span class="text-success">@parts[0]</span>
+                            <span class="text-danger">@string.Join(" ", parts.Skip(1))</span>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="list-group-item bg-light">@item.ToString()</li>
+                    }
+
+                </ItemTemplate>
+            </ListView>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <button class="btn btn-primary" disabled="@nextDisabled" @onclick="@(()=>previousOrNext(true))">Next 20</button>
+                <button class="btn btn-primary" hidden="@(AssesmentItems.First()=="1")" @onclick="@(()=>previousOrNext(false))">Previous 20</button>
+            </div>
+        </div>
+    }
+
+</div>
+
+@code {
+
+    public int inputNumberValue { get; set; }
+    public string url = "FizzBuzz/?number="; // could parameterize this
+    string exception = string.Empty;
+    int nextIncrement = 0;
+    bool nextDisabled = false;
+    ObservableCollection<string> AssesmentItems = new();
+
+    private async Task<ObservableCollection<string>> serializeResultFromResponse(HttpResponseMessage response)
+    {
+        return new ObservableCollection<string>(await response.Content.ReadFromJsonAsync<List<string>>() ?? new List<string>());
+    }
+
+    private async Task<string> handleBadRequest(HttpResponseMessage response)
+    {
+        return await response.Content.ReadAsStringAsync() ?? string.Empty;
+    }
+
+    private async Task getAssesmentFizzBuzzItems()
+    {
+        var result = await _httpClient.GetAsync($"{url}{inputNumberValue}&current={nextIncrement}");
+
+        switch (result.StatusCode)
+        {
+            case System.Net.HttpStatusCode.OK:
+                AssesmentItems = await serializeResultFromResponse(result);
+                break;
+            case System.Net.HttpStatusCode.BadRequest:
+                exception = await handleBadRequest(result);
+                break;
+        }
+
+        StateHasChanged();
+    }
+
+    private void previousOrNext(bool isNext)
+    {
+        if (AssesmentItems.Any() && inputNumberValue > 20)
+        {
+
+            if (isNext) nextIncrement = nextIncrement + 20;
+            else nextIncrement = nextIncrement - 20;
+            onSubmitNumber();
+            nextDisabled = inputNumberValue <= nextIncrement + 20;
+            return;
+        }
+
+
+    }
+
+    private async void onSubmitNumber()
+    {
+
+        try
+        {
+            await getAssesmentFizzBuzzItems();
+
+        }
+        catch (Exception e)
+        {
+            exception = e.Message + " " + e.InnerException; // i would show something nicer to an actual user :)
+        }
+    }
+    //general thoughts and considerations:
+    //1. I would implement services so that logic isnt tightly coupled to each page and can be reused across components
+    //2. I didnt implement testing but would use bunit for this and nunit for service testing but mock services with bunit
+    //3. I would seperate the @code into its seperate partial class file instead of in the same razor page.
+}
+
+
+

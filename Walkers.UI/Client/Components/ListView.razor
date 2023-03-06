@@ -1,0 +1,17 @@
+﻿@using System.Collections.ObjectModel;
+@namespace Walkers.UI.Client.Components
+
+<ul class="list-group">
+    @foreach (string item in Items)
+    {
+        @ItemTemplate(item)
+    }
+</ul>
+
+@code {
+    [Parameter]
+    public ObservableCollection<string> Items { get; set; }
+
+    [Parameter]
+    public RenderFragment<string> ItemTemplate { get; set; }
+}
